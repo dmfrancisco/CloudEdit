@@ -1,0 +1,6 @@
+development:
+  adapter: sqlite3
+  encoding: utf8
+  database: db/canvas_development.sqlite3
+  timeout: 5000
+  pool: 5
