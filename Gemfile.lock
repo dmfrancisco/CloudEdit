@@ -47,7 +47,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mysql2 (0.2.7)
     open4 (1.0.1)
     polyglot (0.3.1)
     rack (1.2.2)
@@ -81,5 +80,4 @@ PLATFORMS
 
 DEPENDENCIES
   jammit
-  mysql2
   rails
