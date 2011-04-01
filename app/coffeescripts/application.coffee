@@ -51,5 +51,13 @@ class App.Collections.Documents extends Backbone.Collection
   model: Document
   url: '/documents'
 
+class App.Views.Index extends Backbone.View
+  initialize: ->
+    this.render()
+
+  render: ->
+    $(this.el).html(JST.documents_collection(collection: this.collection))
+    $("#app").html(this.el)
+
 window.Document = Document
 window.App = App
