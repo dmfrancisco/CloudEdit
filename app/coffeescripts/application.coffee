@@ -7,7 +7,7 @@ App =
     new App.Controllers.Documents()
     Backbone.history.start()
 
-App.Controllers.Documents = Backbone.Controller.extend
+class App.Controllers.Documents extends Backbone.Controller
   routes:
     "documents/:id": "edit"
     "": "index"
