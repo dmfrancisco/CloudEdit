@@ -99,5 +99,33 @@ class App.Views.Edit extends Backbone.View
 
     this.delegateEvents()
 
+class App.Views.Notice extends Backbone.View
+  className: "success"
+  displayLength: 5000
+  defaultMessage: ""
+
+  initialize: ->
+    _.bindAll this, "render"
+    this.message = this.options.message || this.defaultMessage
+    this.render()
+
+  render: ->
+    view = this
+
+    $(this.el).html(this.message)
+    $(this.el).hide()
+    $('#notice').html(this.el)
+    $(this.el).slideDown()
+
+    $.doTimeout this.displayLength, ->
+        $(view.el).slideUp()
+        $.doTimeout 2000, -> view.remove()
+
+    this
+
+class App.Views.Error extends App.Views.Notice
+  className: "error"
+  defaultMessage: "Uh oh! Something went wrong. Please try again."
+
 window.Document = Document
 window.App = App
