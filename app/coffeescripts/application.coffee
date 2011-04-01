@@ -59,5 +59,45 @@ class App.Views.Index extends Backbone.View
     $(this.el).html(JST.documents_collection(collection: this.collection))
     $("#app").html(this.el)
 
+class App.Views.Edit extends Backbone.View
+  events:
+    "submit form": "save"
+
+  initialize: ->
+    _.bindAll this, "render"
+    this.model.bind "change", this.render
+    this.render()
+
+  save: ->
+    self = this
+    message = if this.model.isNew()
+      "Successfuly created!"
+    else
+      "Saved!"
+
+    data = {  }
+
+    this.model.save {
+      title: this.$('[name=title]').val()
+      body: this.$('[name=body]').val()
+    },{
+      success: (model, response) ->
+        new App.Views.Notice message: message
+        Backbone.history.saveLocation "documents/" + model.id
+
+      error: ->
+        new App.Views.Error()
+    }
+
+    false
+
+  render: ->
+    $(this.el).html(JST.document(model: this.model))
+    $("#app").html(this.el)
+
+    this.$("[name=title]").val(this.model.get("title"))
+
+    this.delegateEvents()
+
 window.Document = Document
 window.App = App
