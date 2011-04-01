@@ -47,5 +47,9 @@ class Document extends Backbone.Model
       else
         base + "/" + this.id
 
+class App.Collections.Documents extends Backbone.Collection
+  model: Document
+  url: '/documents'
+
 window.Document = Document
 window.App = App
