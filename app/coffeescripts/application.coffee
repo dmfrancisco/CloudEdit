@@ -35,4 +35,17 @@ class App.Controllers.Documents extends Backbone.Controller
   newDoc: ->
     new App.Views.Edit(model: new Document())
 
+class Document extends Backbone.Model
+  url: ->
+    base = "documents"
+
+    if this.isNew()
+      base
+    else
+      if base.charAt(base.length - 1) == "/"
+        base + "" + this.id
+      else
+        base + "/" + this.id
+
+window.Document = Document
 window.App = App
